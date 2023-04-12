@@ -1,4 +1,12 @@
+/**
+ * J'utilise ici le hook useSearchParams de react-router-dom
+ * ainsi que le hook useState pour avoir la valeur de l'input et ainsi filtrer le tableau
+ */
 import { useState } from "react";
+
+/**
+ * Le hook useSearchParams permet de recuperer les parametres de la query string
+ */
 import { Link, useSearchParams } from "react-router-dom";
 
 const blog = [
@@ -25,10 +33,24 @@ const blog = [
 ];
 
 const Blog = () => {
+	/**
+	 * Le hook useSearchParams permet de recuperer les parametres de la query string
+	 * - searchParams: contient les parametres de la query string
+	 * - setSearchParams: permet de modifier les parametres de la query string
+	 */
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [filteredBlog, setFilteredBlog] = useState(blog);
 
 	const handleSearch = (e) => {
+		e.preventDefault();
+		/**
+		 * On modifie les parametres de la query string
+		 * Avec comme clé `search` et comme valeur la valeur de l'input
+		 */
+		/**
+		 * Si on souhaite avoir plusieurs params, cet article peut etre utile:
+		 * https://ultimatecourses.com/blog/query-strings-search-params-react-router
+		 */
 		setSearchParams({ search: e.target.value });
 
 		setFilteredBlog(
@@ -42,6 +64,9 @@ const Blog = () => {
 		<div>
 			<h1>Blog</h1>
 			<div>
+				{/**
+				 * Dans value, on recupere la valeur de la query string avec la clé `search`, nous rajoutons une valeur par defaut vide
+				 */}
 				<input
 					type="text"
 					placeholder="Search"
