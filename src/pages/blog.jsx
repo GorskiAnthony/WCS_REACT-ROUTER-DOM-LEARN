@@ -76,7 +76,7 @@ const Blog = () => {
 			</div>
 			{filteredBlog.map((post) => (
 				<ul key={post.id}>
-					<Link>{post.title}</Link>
+					<Link to={`/blog/${post.id}`}>{post.title}</Link>
 				</ul>
 			))}
 		</div>
